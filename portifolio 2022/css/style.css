@@ -1,0 +1,369 @@
+/*
+        - arrumar a responsividade do index
+        - colocar o conteudo na pagina sobre(redes sociais, slider com os certificados que eu tenho)
+        - slider(https://www.youtube.com/watch?v=0wvrlOyGlq0)
+        - https://youtu.be/kk5dZVfCpgk pode ajudar
+        - decidir como vou mostrar o conteudo das materias(novas paginas?)
+        - add os links
+*/
+
+html{
+  --body-bg: #5D5D7A;
+  --body-color: #fff;
+  --nav-bg: #23232e;
+  --mobile-menu:#fff ;
+  --ball: #fff;
+  --label: #18181f;
+  --ativo: #C0C0C0;
+  --botao: #23232e;
+  --botao-borda: linear-gradient(205deg, #00a1ff 0, #009eff 3.33%, #009bff 6.67%, #0097ff 10%, #0092ff 13.33%, #008cff 16.67%, #0085ff 20%, #1e7cff 23.33%, #6c73ff 26.67%, #9468ff 30%, #b25cf3 33.33%, #ca4ee3 36.67%, #dd3fd1 40%, #ec2ebf 43.33%, #f71bab 46.67%, #ff0097 50%, #ff0083 53.33%, #ff006f 56.67%, #ff115b 60%, #ff2648 63.33%, #fb3734 66.67%, #f3461f 70%, #e95300 73.33%, #dd5f00 76.67%, #d06a00 80%, #c27300 83.33%, #b27b00 86.67%, #a18300 90%, #8f8900 93.33%, #7c8e00 96.67%, #669300 100%);;
+}
+html[data-theme="light"]{
+  --body-bg: #fcfcfc ;
+  --body-color: #333333;
+  --nav-bg: #EBEBEB;
+  --mobile-menu:#1E1C1C ;
+  --ball: #3b3b3b;
+  --label: #e0dcdc;
+  --ativo: #000000;
+  --botao: #c5bcbc;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+ nav a {
+    color: var(--body-color);
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  
+.ativo a{
+  color: var(--ativo) ;
+}
+
+  nav a:hover {
+    opacity: 0.7;
+  }
+  
+  
+  
+  .logo {
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+    background: var(--nav-bg);
+    height: 8vh;
+  }
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-list li {
+    letter-spacing: 3px;
+    margin-left: 32px;
+    margin-top: 2.5vh;
+  }
+  
+  .mobile-menu {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .mobile-menu div {
+    width: 32px;
+    height: 2px;
+    background: var(--mobile-menu);
+    margin: 8px;
+    transition: 0.3s;
+    
+  }
+  
+  .checkbox{
+    opacity: 0;
+    position: absolute;
+}
+.label{
+    background-color: var(--label);
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    position: relative;
+    justify-content: space-between;
+}
+.ball{
+    position: absolute;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    background-color: var(--ball);
+    top: 2px;
+    transition: transform 0.2s linear;
+}
+.checkbox:checked + .label .ball{
+    transform: translateX(24px);
+}
+.fa-moon{
+    color: #f1c40f;
+}
+.fa-sun{
+    color: #F79525;
+}
+
+.materias {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 1vw;
+  grid-row-gap: 1vw;
+  margin-top: 10vh;
+  }
+  
+  .natureza { 
+      grid-area: 1 / 1 / 2 / 3; 
+  }
+  button{
+      border: none;
+  }
+  .humanas { 
+      grid-area: 1 / 3 / 2 / 5; 
+  }
+  .linguagens { 
+      grid-area: 1 / 5 / 2 / 7; 
+  }
+  .tecnico { 
+      grid-area: 2 / 4 / 3 / 7; 
+  }
+  .matematica { 
+      grid-area: 2 / 1 / 3 / 4; 
+  }
+
+ img{
+     width: 100%;
+     height: 100%;
+ }
+ body{
+     background-color: var(--body-bg);
+     color: var(--body-color);
+ }
+
+  @media (max-width: 999px) {
+    body {
+      overflow-x: hidden;
+    }
+    .nav-list {
+      position: absolute;
+      top: 8vh;
+      right: 0;
+      width: 30vw;
+      height: 92vh;
+      background: var(--nav-bg);
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in;
+    }
+    .nav-list li {
+      margin-left: 0;
+      opacity: 0;
+    }
+    .mobile-menu {
+      display: block;
+    }
+  }
+  
+  .nav-list.active {
+    transform: translateX(0);
+    z-index: 1;
+    
+  }
+  
+  @keyframes navLinkFade {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .mobile-menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+  }
+  
+  .mobile-menu.active .line2 {
+    opacity: 0;
+  }
+  
+  .mobile-menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+  }
+  
+      .botaos{
+        height: 30vh;
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .botaos a{
+        position: relative;
+        display: inline-block;
+        padding: 40px 80px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: var(--body-color);
+        background-color: var(--botao);
+        letter-spacing: 2px;
+        font-size: 16px;
+        transition: 0,5s;
+    }
+    
+    .botaos a span{
+      display: block;
+      position: absolute;
+      background-image: var(--botao-borda);
+    }
+    .botaos a span:nth-child(1){
+      left: 0;
+      bottom: 0;
+      width: 2px;
+      height: 100%;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.5s;
+    }
+    .botaos a:hover span:nth-child(1){
+      transform: scaleY(1);
+      transform-origin: bottom;
+      transition: transform 0.5s;
+    }
+    
+    .botaos a span:nth-child(2){
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: right ;
+      transition: transform 0.5s;
+    }
+    .botaos a:hover span:nth-child(2){
+      transform: scaleY(1);
+      transform-origin: left;
+      transition: transform 0.5s;
+    }
+
+    .botaos a span:nth-child(3){
+      right: 0;
+      bottom: 0;
+      width: 2px;
+      height: 100%;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.5s;
+      transition-delay: 0.5s;
+    }
+    .botaos a:hover span:nth-child(3){
+      transform: scaleY(1);
+      transform-origin: bottom;
+      transition: transform 0.5s;
+      transition-delay: 0.5s;
+    }
+
+    .botaos a span:nth-child(4){
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: right ;
+      transition: transform 0.5s;
+      transition-delay: 0.5s;
+    }
+    .botaos a:hover span:nth-child(4){
+      transform: scaleY(1);
+      transform-origin: left;
+      transition: transform 0.5s;
+      transition-delay: 0.5s;
+    }
+
+
+
+
+
+  @media only screen and (max-width: 770px) {
+    .materias {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+        width: 100%;
+        margin-top: 5vh;
+        justify-content: center;
+        }
+        
+        .natureza { 
+            grid-area: 1 / 1 / 2 / 2; 
+            width: 100%;
+        }
+        .natureza button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .humanas { 
+            grid-area: 2 / 1 / 3 / 2; 
+            width: 100%;
+        }
+        .humanas button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .linguagens { 
+            grid-area: 3 / 1 / 4 / 2; 
+            width: 100%;
+        }
+        .linguagens button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tecnico { 
+            grid-area: 4 / 1 / 5 / 2; 
+            width: 100%;
+        }
+        .tecnico button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .matematica { 
+            grid-area: 5 / 1 / 6 / 2; 
+            width: 100%;
+        }
+        .matematica button{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+      }
